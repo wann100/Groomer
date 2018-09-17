@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HeadWay Mobile App-Register</title>
+
+    <!-- Bootstrap -->
+    <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="statics/css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<center>
+         <nav class="navbar homenav">
+          <div class="container-fluid col-xs-12  col-sm-12 col-lg-12" >
+                                	<a href="/MainPage"  class="btn btn-default glyphicon glyphicon-home" style="  color:white; position:absolute;top:2px;left:2px; background:rgb(57,57,57)!important"rel="external" > HOME</a>
+                    	
+            <img  alt="HeadWay Logo" class="img-responsive" src="../statics/whole_logo.png"  style="width:60%; top:0px;left:0px;">
+               <a href="javascript:history.back(1)" class="btn btn-default glyphicon  glyphicon-arrow-left " data-rel="back" style="color:white; position:absolute;top:2px;right:2px; background:rgb(57,57,57)!important"rel="external" ></a>
+          	</div>
+       </nav> 
+		</center>
+      <center>
+      <nav class="navbar navbar-default bottomhomenav col-md-4" style="border:none;">
+         
+              <div class="navbar-header bottomhomenav">
+ 				<center>
+                <h3  style="color:white!important;"><span class="glyphicon glyphicon-pencil"></span> Step 2: Where are you from </h3>
+      			</center>
+              </div>
+              <div class="collapse navbar-collapse bottomhomenav "  id="myNavbar">
+              	<center>
+                  <ul class="nav navbar-nav ">
+                    <li class="active btn-xl" style="">
+                <script>
+
+  function getLocation(){
+		var geo;
+	    if(navigator && navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		}
+		else{
+			console.log('Geolocation is not supported');
+		}
+	
+    
+  }
+
+  function showPosition(position){
+    geo =position.coords;
+	document.getElementById("location").value  = "["+geo.latitude+ "," + geo.longitude + "]";
+  }
+  </script>
+                        <form   method="post"  onSubmit="getLocation()" action="/map" style="color:white;">
+
+          <label style="visibility:hidden" for="location" >Location:</label>
+          <input  type="text" name="location" style="color:black; visibility:hidden" id="location" />
+         <script>
+ 		  	getLocation();
+
+			</script>
+    
+        
+          <label for="range" style="visibility:hidden">Range in Miles:</label>
+				<input id="range"  name="range"type="text" data-slider-min="0.0" data-slider-max="50" data-slider-step="5" data-slider-value="25.0" style="display: none; visibility:hidden" data-value="14" value="50.0">
+
+
+        <label for="rating" style="visibility:hidden">Minimum Rating:</label>
+        <input  name="rating" id="rating"type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="3" style="display: none; visibility:hidden" data-value="14" value="3.0"/> 
+        
+        </form>
+                    </li>
+				</ul>
+                    </center>    
+              </div>
+          </div>
+      
+      
+ <form method="post" action="registerPage3" id="registerForm"/>
+      <input type="hidden" class="form-control usernameTaken" name="email" id="email" value="{{email}}"  autocapitalize="off" autocorrect="off" required />
+      <input type="hidden" class="form-control required" name="password" id="password" value="{{password}}"  required  />
+      <input type="hidden" class="form-control required passMatch" name="confirm" id="confirm" value="{{cpassword}}"  required  />
+      <input type="hidden" class="form-control required" name="firstName" id="firstName" value="{{fname}}"  required  />
+      <input type="hidden" class="form-control required" name="lastName" id="lastName" value="{{lname}}"  required  />
+      
+ 
+      <label for="occupation">Occupation:</label>
+      <select class="form-control "name="occupation" id="occupation" required >
+      <option>Barber</option>
+      <option>Hairdresser</option>
+      </select>
+      <label for="aboutMe">Shop Name:</label>
+      <input class="form-control "type="text" name="shopName" id="shopName" value=""  required  />
+
+      <label for="aboutMe">Tell Us About Yourself:</label>
+      <input class="form-control " type="text" name="aboutMe" id="aboutMe" value=""  required  />
+
+  <label for="phone">Phone:</label>
+      <input class="form-control required " type="number"  name="phone" id="phone" value=""  required  />
+
+      <label for="street">Shop Address:</label>
+      <input class="form-control required " type="text"  name="street" id="street" value=""  required  />
+     
+      <label for="city">City:</label>
+      <input class="form-control required " type="text"  name="city" id="city" value=""   required />
+
+   
+ 		 <div  data-role="fieldcontain">
+      {{ states }}
+      </div>
+	
+   		<br/>
+        <label> </label>
+      <button class="btn btn-lg btn-primary btn-block registerbutton"  style="background-color:rgb(78,110,128) " type="submit">Continue</button>
+      <label> </label>
+      </form>
+                       <center>
+              <footer class="footer">
+            <div class="container">
+            Copyright 2016 &reg; Conssol LLC. </div></footer>    </center>
+     </nav>
+
+   <script>
+$(document).on("pageshow", "", function() {
+	$.validator.addMethod("usernameTaken", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=usernameTaken&arg0="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="False";
+	}, 'This username has been taken.');
+	$.validator.addMethod("passMatch", function(value)
+	{
+		return value==document.getElementById("password").value;
+	}, 'Your passwords do not match up.');
+	$("#registerForm").validate();
+});
+</script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="statics/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>DashBoard</title>
+
+    <!-- Bootstrap -->
+    <link href="../../statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../statics/css/custom.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body  style="background:white!important;s">
+  	<center>
+      	 <nav class="navbar homenav">
+          <div class="container-fluid col-xs-12  col-sm-12 col-lg-12" >
+                                	<a href="/"  class="btn bottomhomenav" style="  color:white; position:absolute;top:0px;left:0px; background:rgb(57,57,57)!important"rel="external" data->
+                    	<span class="glyphicon glyphicon-home"></span> Home</a>
+            <img class="img-responsive" src="statics/whole_logo.png"  style="width:60%; top:0px;left:0px;">
+            <a href="javascript:history.back(1)" class="btn bottomhomenav" data-rel="back" style="color:white; position:absolute;top:0px;right:0px; background:rgb(57,57,57)!important"rel=	"external" >
+            
+                    	<span class="glyphicon  glyphicon-arrow-left"></span> Back</a>
+          	</div>
+            </nav> 
+		</center>
+      <nav class="navbar navbar-default bottomhomenav">
+        <div class="container-fluid bottomhomenav">
+          <div class="navbar-header bottomhomenav">
+            <button type="button" class="navbar-toggle" style="position:absolute;left:0px; " data-toggle="collapse" data-target="#myNavbar">
+              
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+			<center>
+                <h5  style="color:white!important;">  Welcome back, {{ fullname }}! </h5>
+                <h4  style="color:white!important;" >You have {{numofappts}} Appointments</h4>
+      			</center>
+          </div>
+          <div class="collapse navbar-collapse bottomhomenav" id="myNavbar">
+            <center>
+              <ul class="nav navbar-nav ">
+                <li class="active btn-xl" style="">
+                	{{profilebutton}}
+                  </li>
+								  <ul class="dropdown-menu">
+                 		<li class="active btn-xl" style="">
+                    	<a style=""href="/registerUser" rel="external" data-iconpos="center" data-icon="search"><span class="glyphicon glyphicon-search"></span>As a user</a>
+                   	</li>
+                    <li class="active btn-xl" style="">
+                      <a style=""href="/register_page1" rel="external" data-iconpos="center" data-icon="search"><span class="glyphicon glyphicon-search"></span>As a GroomR</a>
+                   	</li>
+                  </ul>
+                </li>
+                <li class="active btn-xl" style="">
+                 <script>
+
+  function getLocation(){
+		var geo;
+	    if(navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		}
+	
+    
+  }
+
+  function showPosition(position){
+    geo =position.coords.latitude + "," + position.coords.longitude;
+	document.getElementById("location").value  = geo;
+  }
+  </script>
+                   <form   method="post"  onSubmit="getLocation()" action="/map" style="color:white;">
+		<center>
+        <button    class=" button-effect btn-block dropdown-toggle"type="submit"  style="color:black; box-shadow:none; border:none;padding: 10px 15px;"><span class="glyphicon glyphicon-search"></span>Find A Hair Professional</button>
+        </center>
+          <label style="visibility:hidden" for="location" >Location:</label>
+          <input  type="text" name="location" style="color:black; visibility:hidden" id="location" />
+         <script>
+ 		  	getLocation();
+
+			</script>
+    
+        
+          <label for="range" style="visibility:hidden">Range in Miles:</label>
+				<input id="range"  name="range"type="text" data-slider-min="0.0" data-slider-max="50" data-slider-step="5" data-slider-value="25.0" style="display: none; visibility:hidden" data-value="14" value="50.0">
+
+
+        <label for="rating" style="visibility:hidden">Minimum Rating:</label>
+        <input  name="rating" id="rating"type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="3" style="display: none; visibility:hidden" data-value="14" value="3.0"/> 
+        
+        </form>
+                </li>
+							</ul>
+            </center>    
+          </div>
+        </div>
+  
+
+	
+
+<center>
+    {{ photo }}
+   <br/>
+
+ <a  class="btn btn-lg btn-block registerbutton"type="button" style="width:90%"  href="{{ editref }}">Edit Profile</a>
+ <br/>
+<a  class=" form-signin btn btn-lg btn-primary btn-block registerbutton"type="button" style="width:90%"   href="{{ appt }}">My Appointments</a>
+   <br/>
+  {{ profilepage }}
+   <br/>
+  {{ favoritebutton }}
+  
+   <a class="btn btn-lg btn-primary btn-block registerbutton"type="button" href="/logout" style="width:90%"  data-role="button">Logout</a>
+    <br/>
+     <br/>
+    </center>
+			</nav>
+			
+
+<script>
+$(document).on("pageshow", "", function() {
+	$.validator.addMethod("validUsername", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=usernameTaken&arg0="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="True";
+	}, 'This is not a valid username.');
+	$.validator.addMethod("rightPassword", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=wrongPassword&arg0="+document.getElementById("username").value+"&arg1="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="False";
+	}, 'The password you have entered is incorrect.');
+	$("#loginForm").validate();
+});
+function getCookie(cname)
+{
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i=0; i<ca.length; i++)
+  {
+  var c = ca[i].trim();
+  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+return "";
+}
+var newusername = getCookie('saveuser');
+$('#username').val(newusername);
+$('#password').val(getCookie('savepass'));
+if (newusername != '')
+{
+	document.getElementById("remember").checked = true;
+}
+//	var u = $.cookie("saveuser"); //"USERNAME" COOKIE
+//	var p = $.cookie("savepass"); //"PASSWORD" COOKIE
+//	alert('hello');
+//	alert(u);
+//	$("#username").val(u); //FILLS WITH "USERNAME" COOKIE
+//	$("#password").val(p); //FILLS WITH "PASSWORD" COOKIE
+</script>
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script type="text/javascript"> 
+		$(document).bind("mobileinit", function () {
+			$.mobile.ajaxEnabled = false;
+		});
+		
+		</script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="statics/js/bootstrap.min.js"></script>
+  </body>
+</html>

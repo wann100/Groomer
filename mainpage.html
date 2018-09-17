@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HeadWay Mobile App-DashBoard</title>
+<meta name="description" content="Barbers, Official Barber finding App, Android Barber App,
+HeadWay, Find your look today, Barber payment System, Hair Dressers, Free Scheduling,
+Free Account, Hair, Beauty, showcasebarbers barbersinctv barbersalute cut, hairmen,sharpfade cissorsalute barbershop
+barbershopconnect,hairmenstyle,curlyhair,stylist,bristol,men, Mobile Application,register,login" />
+    <!-- Bootstrap -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body background="statics/cubes.png">
+
+                <script>
+	window.setTimeout(function(){
+        getLocation();
+        document.getElementById("mapform").submit();},3500);
+  function getLocation(){
+		var geo;
+      if(navigator || navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		}
+		else{
+			console.log('Geolocation is not supported');
+		}
+	
+    
+  }
+
+  function showPosition(position){
+    geo =position.coords;
+	document.getElementById("location").value  = "["+geo.latitude+ "," + geo.longitude + "]";
+  }
+  </script>
+                   <script>
+ 		  	getLocation();
+
+			</script>
+                   <form  id="mapform"  method="post"  onSubmit="getLocation()" action="/map" style="color:white;">
+		<center>
+         <script>
+ 		  	getLocation();
+
+			</script>
+          <label style="visibility:hidden" for="location" >Location:</label>
+              <script>
+ 		  	getLocation();
+
+			</script>
+          <input  type="text" name="location"  style="color:black; visibility:hidden" id="location" />
+         <script>
+ 		  	getLocation();
+
+			</script>
+    
+        
+          <label for="range" style="visibility:hidden">Range in Miles:</label>
+				<input id="range"  name="range"type="text" data-slider-min="0.0" data-slider-max="50" data-slider-step="5" data-slider-value="100.0" style="display: none; visibility:hidden" data-value="14" value="100">
+
+
+        <label for="rating" style="visibility:hidden">Minimum Rating:</label>
+        <input  name="rating" id="rating"type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="3" style="display: none; visibility:hidden" data-value="14" value="3.0"/> 
+        </center>
+        </form>
+                <script>
+
+  function getLocation(){
+		var geo;
+	    if(navigator && navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		}
+		else{
+			console.log('Geolocation is not supported');
+		}
+	
+    
+  }
+
+  function showPosition(position){
+    geo =position.coords;
+	document.getElementById("location").value  = "["+geo.latitude+ "," + geo.longitude + "]";
+  }
+  </script>
+<script>
+function logout(){
+	FB.logout(function(response) {
+  // user is now logged out
+});}
+</script>
+</html>

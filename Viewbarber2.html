@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>DashBoard</title>
+
+    <!-- Bootstrap -->
+    <link href="../../statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../statics/css/custom.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<center>
+      	 <nav class="navbar homenav">
+          <div class="container-fluid col-xs-12  col-sm-12 col-lg-12" >
+                                	<a href="/MainPage"  class="btn bottomhomenav" style="  color:white; position:absolute;top:0px;left:0px; background:rgb(57,57,57)!important"rel="external" data->
+                    	<span class="glyphicon glyphicon-home"></span> Home</a>
+            <img class="img-responsive" src="statics/whole_logo.png"  style="width:60%; top:0px;left:0px;">
+            <a href="/#" class="btn bottomhomenav" data-rel="back" style="color:white; position:absolute;top:0px;right:0px; background:rgb(57,57,57)!important"rel=	"external" >
+                    	<span class="glyphicon  glyphicon-arrow-left"></span> Back</a>
+          	</div>
+            </nav> 
+		</center>
+      <nav class="navbar navbar-default bottomhomenav">
+        <div class="container-fluid bottomhomenav">
+          <div class="navbar-header bottomhomenav">
+            <button type="button" class="navbar-toggle" style="position:absolute;left:0px; " data-toggle="collapse" data-target="#myNavbar">
+              
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+			<center>
+                <h5  style="color:white!important;">  Welcome back, {{ fullname }}! </h5>
+                <h4  style="color:white!important;" >You have {{numofappts}} Appointments</h4>
+      			</center>
+          </div>
+          <div class="collapse navbar-collapse bottomhomenav" id="myNavbar">
+            <center>
+              <ul class="nav navbar-nav ">
+                <li class="active btn-xl" style="">
+                	{{profilebutton}}
+                  
+							
+            </center>    
+          </div>
+        </div>
+  
+    <center>
+   <h3 style=" color:white!important;"> Shop Name: {{ shop }}</h3>   
+  <h2 style=" color:white!important;">" {{aboutMe}} " </h2>
+   <center><span class="stars s-{{ starnum }}" data-default='{{ starnum }}' style="text-align:right">0 stars</span></center>  
+  	<span style=" color:white!important;">{{rating}}</span>
+   </center>
+<div class="container">
+{{ photo }}
+ <h5  style=" display:inline;  color:white!important;" > GroomR : {{fullName}} ({{typeofprof}})</h5>
+
+<h5 style="position:relative; left:112px;color:white!important;  margin-top:-80px" >Phone:{{phone}}</h5>
+
+ <h5 style="position:relative; color:white!important; left:112px; margin-top:0px" > Email: {{email}} </h5>
+ </div>
+   <br/>
+   <br/>
+   <br/>
+    <hr>
+    <center> 
+   
+ 
+	{{ favButton }}
+  
+
+   <h4 style=" color:white!important;"> Address: {{address}} </h4>
+   {{ hours }} 
+ {{certified}}
+ 
+
+  </div>
+  {{ appt }}
+      
+  {{ rateme }}
+  <center>
+  
+  
+  {{ services }}
+  </center>
+  {{ reviews }}
+     <br/>
+  
+   
+  </center>
+  <script>
+  function favorite ()
+  {
+	  window.location = '/favBarber/{{ barberkey }}';
+  }
+  </script>
+			</nav>
+		            <center>
+              <footer class="footer">
+            <div class="container">
+            Copyright 2016 &reg; Conssol LLC. </div></footer>    </center> 	
+
+<script>
+$(document).on("pageshow", "", function() {
+	$.validator.addMethod("validUsername", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=usernameTaken&arg0="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="True";
+	}, 'This is not a valid username.');
+	$.validator.addMethod("rightPassword", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=wrongPassword&arg0="+document.getElementById("username").value+"&arg1="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="False";
+	}, 'The password you have entered is incorrect.');
+	$("#loginForm").validate();
+});
+function getCookie(cname)
+{
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i=0; i<ca.length; i++)
+  {
+  var c = ca[i].trim();
+  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+return "";
+}
+var newusername = getCookie('saveuser');
+$('#username').val(newusername);
+$('#password').val(getCookie('savepass'));
+if (newusername != '')
+{
+	document.getElementById("remember").checked = true;
+}
+//	var u = $.cookie("saveuser"); //"USERNAME" COOKIE
+//	var p = $.cookie("savepass"); //"PASSWORD" COOKIE
+//	alert('hello');
+//	alert(u);
+//	$("#username").val(u); //FILLS WITH "USERNAME" COOKIE
+//	$("#password").val(p); //FILLS WITH "PASSWORD" COOKIE
+</script>
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script type="text/javascript"> 
+		$(document).bind("mobileinit", function () {
+			$.mobile.ajaxEnabled = false;
+		});
+		
+		</script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="statics/js/bootstrap.min.js"></script>
+  </body>
+</html>

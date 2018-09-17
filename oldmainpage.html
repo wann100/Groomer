@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>DashBoard</title>
+
+    <!-- Bootstrap -->
+    <link href="../../statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../statics/css/custom.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<center>
+      	 <nav class="navbar homenav">
+          <div class="container-fluid col-xs-12  col-sm-12 col-lg-12" >
+                                	<a href="/MainPage"  class="btn bottomhomenav" style="  color:white; position:absolute;top:0px;left:0px; background:rgb(57,57,57)!important"rel="external" data->
+                    	<span class="glyphicon glyphicon-home"></span> Home</a>
+            <img class="img-responsive" src="statics/whole_logo.png"  style="width:60%; top:0px;left:0px;">
+            <a href="javascript:history.back(1)" class="btn bottomhomenav" data-rel="back" style="color:white; position:absolute;top:0px;right:0px; background:rgb(57,57,57)!important"rel=	"external" >
+            
+                    	<span class="glyphicon  glyphicon-arrow-left"></span> Back</a>
+          	</div>
+            </nav> 
+		</center>
+      <nav class="navbar navbar-default bottomhomenav">
+        <div class="container-fluid bottomhomenav">
+          <div class="navbar-header bottomhomenav">
+            <button type="button" class="navbar-toggle" style="position:absolute;left:0px; " data-toggle="collapse" data-target="#myNavbar">
+              
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+			<center>
+                <h5  style="color:white!important;">  Welcome back, {{ fullname }}! </h5>
+                <h4  style="color:white!important;" >You have {{numofappts}} Appointments</h4>
+      			</center>
+          </div>
+          <div class="collapse navbar-collapse bottomhomenav" id="myNavbar">
+            <center>
+              <ul class="nav navbar-nav ">
+                <li class="active btn-xl" style="">
+                	{{profilebutton}}
+                
+								  <ul class="dropdown-menu">
+                 		<li class="active btn-xl" style="">
+                    	<a style=""href="/registerUser" rel="external" data-iconpos="center" data-icon="search"><span class="glyphicon glyphicon-search"></span>As a user</a>
+                   	</li>
+                    <li class="active btn-xl" style="">
+                      <a style=""href="/register_page1" rel="external" data-iconpos="center" data-icon="search"><span class="glyphicon glyphicon-search"></span>As a GroomR</a>
+                   	</li>
+                  </ul>
+                </li>
+                <li class="active btn-xl" style="">
+
+                   <form   method="post"  onSubmit="getLocation()" action="/map" style="color:white;">
+		<center>
+  <button    class=" button-effect btn-block dropdown-toggle"type="submit"  style="color:black; box-shadow:none; border:none;padding: 10px 15px;"><span class="glyphicon glyphicon-search"></span>Find A Hair Professional</button>
+        </center>
+          <label style="visibility:hidden" for="location" >Location:</label>
+          <input  type="text" name="location" style="color:black; visibility:hidden" id="location" />
+         <script>
+ 		  	getLocation();
+
+			</script>
+    
+        
+          <label for="range" style="visibility:hidden">Range in Miles:</label>
+				<input id="range"  name="range"type="text" data-slider-min="0.0" data-slider-max="50" data-slider-step="5" data-slider-value="25.0" style="display: none; visibility:hidden" data-value="14" value="50">
+
+
+        <label for="rating" style="visibility:hidden">Minimum Rating:</label>
+        <input  name="rating" id="rating"type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="3" style="display: none; visibility:hidden" data-value="14" value="3.0"/> 
+        
+        </form>
+                </li>
+							</ul>
+            </center>    
+          </div>
+        </div>
+  
+
+	
+
+<center>
+    {{ photo }}
+   <br/>
+
+ <a  class="btn btn-lg btn-block registerbutton"type="button" style="width:90%"  href="{{ editref }}">Edit Profile</a>
+ <br/>
+<a  class=" form-signin btn btn-lg btn-primary btn-block registerbutton"type="button" style="width:90%"   href="{{ appt }}">My Appointments</a>
+   <br/>
+  {{ profilepage }}
+   <br/>
+  {{ favoritebutton }}
+  
+   <a class="btn btn-lg btn-primary btn-block registerbutton"type="button" onClick="checkLoginState();"  href="/logout" style="width:90%"  data-role="button">Logout</a>
+    <br/>
+     <br/>
+    </center>
+    
+			</nav>
+            </body>
+  <script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1053360814685882',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.5' // use graph api version 2.5
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', { locale: 'en_US', fields: 'name, email' }, function(response) {
+		console.log(JSON.stringify(response));
+      console.log('Successful login for: ' + response.name);
+	  		FB.logout(function(response) {
+  // user is now logged out
+});
+		
+    });
+	
+	
+  }
+</script>
+                <script>
+
+  function getLocation(){
+		var geo;
+	    if(navigator && navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		}
+		else{
+			console.log('Geolocation is not supported');
+		}
+	
+    
+  }
+
+  function showPosition(position){
+    geo =position.coords;
+	document.getElementById("location").value  = "["+geo.latitude+ "," + geo.longitude + "]";
+  }
+  </script>
+<script>
+function logout(){
+	FB.logout(function(response) {
+  // user is now logged out
+});
+}
+$(document).on("pageshow", "", function() {
+	$.validator.addMethod("validUsername", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=usernameTaken&arg0="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="True";
+	}, 'This is not a valid username.');
+	$.validator.addMethod("rightPassword", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=wrongPassword&arg0="+document.getElementById("username").value+"&arg1="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="False";
+	}, 'The password you have entered is incorrect.');
+	$("#loginForm").validate();
+});
+function getCookie(cname)
+{
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i=0; i<ca.length; i++)
+  {
+  var c = ca[i].trim();
+  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+return "";
+}
+var newusername = getCookie('saveuser');
+$('#username').val(newusername);
+$('#password').val(getCookie('savepass'));
+if (newusername != '')
+{
+	document.getElementById("remember").checked = true;
+}
+//	var u = $.cookie("saveuser"); //"USERNAME" COOKIE
+//	var p = $.cookie("savepass"); //"PASSWORD" COOKIE
+//	alert('hello');
+//	alert(u);
+//	$("#username").val(u); //FILLS WITH "USERNAME" COOKIE
+//	$("#password").val(p); //FILLS WITH "PASSWORD" COOKIE
+</script>
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script type="text/javascript"> 
+		$(document).bind("mobileinit", function () {
+			$.mobile.ajaxEnabled = false;
+		});
+		
+		</script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="statics/js/bootstrap.min.js"></script>
+  
+</html>

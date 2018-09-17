@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HeadWay</title>
+<style>
+
+.card-container.card {
+    max-width: 80%;
+	max-height:70%;
+    padding: 40px 40px;
+	box-shadow: 0px 2px 10px rgb(78,110,128) ;
+
+}
+
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+/*
+ * Card component
+ */
+.card {
+    background-color:rgb(57,57,57);
+	
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+/*
+ * Form styles
+ */
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 0;
+    min-height: 1em;
+}
+
+.reauth-email {
+    display: block;
+    color: #404040;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin #inputEmail,
+.form-signin #inputPassword {
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
+}
+
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    border-color: rgb(104, 145, 162);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+    /*background-color: #4d90fe; */
+    background-color: rgb(104, 145, 162);
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: rgb(12, 97, 33);
+}
+
+.forgot-password {
+    color: rgb(104, 145, 162);
+}
+
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus{
+    color: rgb(12, 97, 33);
+}
+</style>
+ 
+
+                <script>
+
+
+
+  function getLocation(){
+		var geo;
+	    if(navigator && navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		}
+		else{
+			console.log('Geolocation is not supported');
+		}
+	
+    
+  }
+
+  function showPosition(position){
+    geo =position.coords;
+	document.getElementById("location").value  = "["+geo.latitude+ "," + geo.longitude + "]";
+  }
+  </script>
+
+<script>
+	window.onload = function(){
+			 getLocation();
+				
+				
+			}
+	}
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1053360814685882',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+
+    // ADD ADDITIONAL FACEBOOK CODE HERE
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+    <!-- Bootstrap -->
+    <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="statics/css/custom.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+     	<center>
+      	 <nav class="navbar homenav">
+          <div class="container-fluid col-xs-12  col-sm-12 col-lg-12" >
+                                	<a href="/MainPage"  class="btn btn-default glyphicon glyphicon-home" style="  color:white; position:absolute;top:2px;left:2px; background:rgb(57,57,57)!important"rel="external" > HOME</a>
+           
+              <button id="registerbuttons" class="btn-lg dropdown-toggle registerbutton"   aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"  style="position:absolute;top:175px;left:15%; font-family:webfont; padding-top:-4px" ><span class="glyphicon glyphicon-edit"></span> Register</button>
+<ul class="dropdown-menu">
+<li class="active btn-xl" style=""><a style=""href="/registerUser" rel="external" data-iconpos="center" data-icon="search"><span class="glyphicon glyphicon-search"></span>As a user</a></li>
+<li class="active btn-xl" style=""><a style=""href="/registerPage1" rel="external" data-iconpos="center" data-icon="search"><span class="glyphicon glyphicon-search"></span>As a Hair Dresser</a></li></ul>
+ <form  id="mapform"   method="post"   onSubmit="getLocation()" action="/map" style="color:white;">
+     <script>  getLocation();</script>
+  <button    class=" btn-lg registerbutton"type="submit"  style="position:absolute;top:175px;right:15%;color:white; box-shadow:none; border:none;padding: 10px 15px;"><span class="glyphicon glyphicon-search"></span> Search</button>
+   </nav>
+          <label style="visibility:hidden" for="location" >Location:</label>
+            <script>  getLocation();</script>
+          <input  type="text" name="location" style="color:black; display:none; visibility:hidden" id="location" />
+			<script>
+  getLocation();
+			</script>
+        
+          <label for="range" style="display:none;visibility:hidden">Range in Miles:</label>
+				<input id="range"  name="range"type="text" data-slider-min="0.0" data-slider-max="50" data-slider-step="5" data-slider-value="25.0" style="display: none; visibility:hidden" data-value="14" value="50">
+
+
+        <label for="rating" style="display:none;visibility:hidden">Minimum Rating:</label>
+        <input  name="rating" id="rating"type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="3.0" style="display: none; visibility:hidden" data-value="3.0" value="3.0"/>
+	</center>
+    </form>
+    <br/>
+            <a href="javascript:history.back(1)" class="btn btn-default glyphicon  glyphicon-arrow-left " data-rel="back" style="color:white; position:absolute;top:2px;right:2px; background:rgb(57,57,57)!important"rel="external" ></a>
+               <center>
+                    <div class="container" style="">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            	LOGIN
+            <img id="profile-img" class="profile-img-card" src="statics/whole_logo.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            
+            <form class="form-signin" method="post" id="loginForm" action="/login" >
+                <span id="reauth-email" class="reauth-email"></span>
+                            <input name="username" class="form-control validUsername" id="username" placeholder="Email" autocapitalize="off" type="email" autocorrect="off" required autofocus />
+              <input type="password" class="form-control required rightPassword" name="password" id="password" placeholder="Password" required  />
+               
+                    <label>
+                        <input type="checkbox" value="remember-me" style="color:black!important;"> Remember me
+                    </label>
+               <button class="btn btn-lg btn-primary btn-block registerbutton" type="submit">Sign in</button>
+               
+            </form><!-- /form -->
+            <a  href="/forgotPassword" class="forgot-password">
+                Forgot the password?
+            </a>
+        </div><!-- /card-container -->
+
+    </center><!-- /container -->
+     </div>       
+                
+
+<script>
+$(document).on("pageshow", "", function() {
+	$.validator.addMethod("validUsername", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=usernameTaken&arg0="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="True";
+	}, 'This is not a valid username.');
+	$.validator.addMethod("rightPassword", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=wrongPassword&arg0="+document.getElementById("username").value+"&arg1="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="False";
+	}, 'The password you have entered is incorrect.');
+	$("#loginForm").validate();
+});
+function getCookie(cname)
+{
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i=0; i<ca.length; i++)
+  {
+  var c = ca[i].trim();
+  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+return "";
+}
+var newusername = getCookie('saveuser');
+$('#username').val(newusername);
+$('#password').val(getCookie('savepass'));
+if (newusername != '')
+{
+	document.getElementById("remember").checked = true;
+}
+//	var u = $.cookie("saveuser"); //"USERNAME" COOKIE
+//	var p = $.cookie("savepass"); //"PASSWORD" COOKIE
+//	alert('hello');
+//	alert(u);
+//	$("#username").val(u); //FILLS WITH "USERNAME" COOKIE
+//	$("#password").val(p); //FILLS WITH "PASSWORD" COOKIE
+</script>
+ 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="statics/js/bootstrap.min.js"></script>
+  </body>
+</html>

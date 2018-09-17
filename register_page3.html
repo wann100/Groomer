@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HeadWay Mobile App-Register</title>
+
+    <!-- Bootstrap -->
+    <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="statics/css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<center>
+         <nav class="navbar homenav">
+          <div class="container-fluid col-xs-12  col-sm-12 col-lg-12" >
+                                	<a href="/MainPage"  class="btn btn-default glyphicon glyphicon-home" style="  color:white; position:absolute;top:2px;left:2px; background:rgb(57,57,57)!important"rel="external" > HOME</a>
+                    	
+            <img class="img-responsive" src="../statics/whole_logo.png"  style="width:60%; top:0px;left:0px;">
+               <a href="javascript:history.back(1)" class="btn btn-default glyphicon  glyphicon-arrow-left " data-rel="back" style="color:white; position:absolute;top:2px;right:2px; background:rgb(57,57,57)!important"rel="external" ></a>
+          	</div>
+       </nav> 
+		</center>
+      
+      <nav class="navbar navbar-default bottomhomenav">
+          <div class="container-fluid bottomhomenav">
+              <div class="navbar-header bottomhomenav">
+                  <button type="button" class="navbar-toggle"  style="   position:absolute;left:0px;"data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"> </span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  
+ 			
+                <h3  style="color:white"><span class="glyphicon glyphicon-pencil"></span> Step 3: </h3>
+      
+              </div>
+              <div class="collapse navbar-collapse bottomhomenav "  id="myNavbar">
+              	<center>
+                  <ul class="nav navbar-nav ">
+                <script>
+
+  function getLocation(){
+		var geo;
+	    if(navigator && navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		}
+		else{
+			console.log('Geolocation is not supported');
+		}
+	
+    
+  }
+
+  function showPosition(position){
+    geo =position.coords;
+	document.getElementById("location").value  = "["+geo.latitude+ "," + geo.longitude + "]";
+  }
+  </script>
+                   <form   method="post"  onSubmit="getLocation()" action="/map" style="color:white;">
+		<center>
+ <button    class=" button-effect btn-block dropdown-toggle"type="submit"  style="color:black; box-shadow:none; border:none;padding: 10px 15px;"><span class="glyphicon glyphicon-search"></span>Find A Hair Professional</button>
+        </center>
+          <label style="visibility:hidden" for="location" >Location:</label>
+          <input  type="text" name="location" style="color:black; visibility:hidden" id="location" />
+         <script>
+ 		  	getLocation();
+
+			</script>
+    
+        
+          <label for="range" style="visibility:hidden">Range in Miles:</label>
+				<input id="range"  name="range"type="text" data-slider-min="0.0" data-slider-max="50" data-slider-step="5" data-slider-value="25.0" style="display: none; visibility:hidden" data-value="14" value="50.0">
+
+
+        <label for="rating" style="visibility:hidden">Minimum Rating:</label>
+        <input  name="rating" id="rating"type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="3" style="display: none; visibility:hidden" data-value="14" value="3.0"/> 
+        
+        </form>
+				</ul>
+                    </center>    
+              </div>
+          </div>
+      
+      
+	<center>
+     <form  action="addBarber" id="registerForm" method="post" id="registerForm" style=" color:white;padding-bottom:20px;"/>
+       <h3>Step 3- Pick your hours</h3>
+       <input type="hidden" class="required usernameTaken" name="email" id="email" value="{{email}}"  autocapitalize="off" autocorrect="off"  />
+      <input type="hidden" class="required" name="password" id="password" value="{{password}}"  />
+      <input type="hidden" class="required passMatch" name="confirm" id="confirm" value="{{cpassword}}"  />
+      <input type="hidden" class="required" name="firstName" id="firstName" value="{{fname}}"  />
+      <input type="hidden" class="required" name="lastName" id="lastName" value="{{lname}}"  />
+      <input type="hidden" class="required" name="occupation" id="occupation" value="{{occupation}}"  />
+      <input type="hidden" class="required" name="shopName" id="shopName" value="{{shopName}}"  />
+      <input type="hidden" class="required" name="aboutMe" id="aboutMe" value="{{aboutMe}}"  />
+      <input type="hidden" class="required" name="phone" id="phone" value="{{phone}}"  />
+      <input type="hidden" class="required" name="street" id="street" value="{{street}}"  />
+      <input type="hidden" class="required" name="city" id="city" value="{{city}}"  />
+      <input type="hidden" class="required" name="state" id="state" value="{{state}}"  />
+	<div id="services" data-role="fieldcontain">
+        <script>
+        var serviceNum = 1;
+        var serviceList = ['Haircuts/Trims','Shades','Tapers','Brush Cuts','Design Haircuts','Clipper Shaves','Razor Shaves','Edge Shape Ups','Facial Trims','Eyebrow Arches','Neck Tapers','Shampoo','Conditionings','Natural Dyes','Beard Trims','Strengthening Therapies','Relaxers','Twists','Braids','Curls','Locs','Perms','Weaves','Extensions','Coloring Highlights','Updos','Formal Hairstyles'];
+        
+        function addService()
+        {
+            var allServices = "";
+            for (var i = 0; i < serviceNum-1; i++)
+            {
+                allServices+= '<div data-role="fieldcontain"><label for="service'+(i+1)+'">Service #'+(i+1)+': </label>\n';
+                allServices+='<select class="form-control"  style="color:black" name="service'+(i+1)+'" id="service'+(i+1)+'">';
+                for (var i2 = 0; i2 < serviceList.length; i2++)
+                    if (serviceList[i2] == document.getElementById("service"+(i+1)).value)
+                        allServices+='<option selected>'+serviceList[i2]+'</option>';
+                    else
+                        allServices+='<option>'+serviceList[i2]+'</option>';
+                allServices+='</select></div><div data-role="fieldcontain"><label for="price'+(i+1)+'"> Price: </label>';
+                allServices+='<input class="required number form-control" name="price'+(i+1)+'" id="price'+(i+1)+'" value="'+document.getElementById("price"+(i+1)).value+'"/>';
+                allServices+='</div> <button type="button" class="btn registerbutton" onClick="removeService('+(i+1)+');">Remove</button>';
+                allServices+='<br />'
+            }
+            var newService = '<hr /><div data-role="fieldcontain"><label for="service'+serviceNum+'">Service #'+serviceNum+': </label>\n';
+            newService+='<select class="form-control"  style="color:black; name="service'+serviceNum+'" id="service'+serviceNum+'">'
+            for (var i = 0; i < serviceList.length; i++)
+                newService+='<option>'+serviceList[i]+'</option>';
+            newService+='</select></div><div data-role="fieldcontain"><label for="price'+serviceNum+'"> Price: </label>';
+            newService+='<input class="required number form-control" name="price'+serviceNum+'" id="price'+serviceNum+'" />';
+            newService+='</div> <button type="button"  class="btn registerbutton"onClick="removeService('+serviceNum+');">Remove</button><hr />';
+            
+			document.getElementById('services').innerHTML = allServices+newService+'<br />';
+            document.getElementById('serviceNum').value = serviceNum;
+            serviceNum++;
+			$("#services").trigger("create");
+			return newService+'<br />';
+			
+        }
+        function removeService(num)
+        {
+            var allServices = "";
+            var curService = 1;
+            for (var i = 0; i < serviceNum-1; i++)
+            {
+                if (i+1!=num)
+                {
+                    allServices+= '<hr /><div data-role="fieldcontain"><label for="service'+curService+'">Service #'+curService+': </label>\n';
+                    allServices+='<select class="form-control"  style="color:black;" name="service'+curService+'" id="service'+curService+'">';
+                    for (var i2 = 0; i2 < serviceList.length; i2++)
+                        if (serviceList[i2] == document.getElementById("service"+(i+1)).value)
+                            allServices+='<option selected>'+serviceList[i2]+'</option>';
+                        else
+                            allServices+='<option>'+serviceList[i2]+'</option>';
+                    allServices+='</select></div><div data-role="fieldcontain"><label for="price'+curService+'"> Price: </label>';
+                    allServices+='<input class="required number form-control" name="price'+curService+'" id="price'+curService+'" value="';
+                    allServices+=document.getElementById("price"+(i+1)).value+'"/>';
+                    allServices+='</div> <button type="button"  class="btn registerbutton" onClick="removeService('+curService+');">Remove</button><hr />';
+                    allServices+='<br />'
+                    curService++;
+                }
+            }
+
+            serviceNum--;
+            document.getElementById('services').innerHTML = allServices;
+            document.getElementById('serviceNum').value = (serviceNum-1);
+			$("#services").trigger("create");
+        }
+        </script>
+       </div>
+     
+            <div style="position:fixed; left: -800px;">
+        <input  class="form-control"  style="color:black" readonly id="serviceNum" name="serviceNum" value="0"/>
+        </div>
+
+       
+
+      <br/>
+<button type="button" class="btn registerbutton" id="serviceButton" onclick="addService()">Add A Service</button>
+        <table >
+      	<tr>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th >Start Time</th>
+            <th >End Time</th>
+        </tr>
+        <tr>
+        <td colspan="2" align="center">Sunday</td>
+        <td colspan="2" align="center">Monday</td>
+        </tr>
+        <tr>
+           	<td><select  class="form-control"  name="1Start" id="1Start">{{ sundayStart }}</select></td>
+           	<td><select  class="form-control"  name="1End" id="1End">{{ sundayEnd }}</select></td>
+           	<td><select  class="form-control"  name="2Start" id="2Start">
+           	  
+           	  
+           	  
+           	  {{ mondayStart }}
+       	    
+       	    
+       	    
+       	    </select></td>
+           	<td><select  class="form-control" name="2End" id="2End">
+           	  
+           	  
+           	  {{ mondayEnd }}
+       	    
+       	    
+       	    </select></td>
+        </tr>
+        <tr>
+        <td colspan="2" align="center">Tuesday</td>
+        <td colspan="2" align="center">Wednesday</td>
+        </tr>
+        <tr>
+           	<td><select  class="form-control"  name="3Start" id="3Start">
+           	  
+           	  
+           	  {{ tuesdayStart }}
+       	    
+       	    
+       	    </select></td>
+           	<td><select  class="form-control" name="3End" id="3End">
+           	  
+           	  {{ tuesdayEnd }}
+       	    
+       	    </select></td>
+           	<td><select  class="form-control" name="4Start" id="4Start">
+           	  
+           	  {{ wednesdayStart }}
+       	    
+       	    </select></td>
+           	<td><select class="form-control"  name="4End" id="4End">
+           	  
+           	  {{ wednesdayEnd }}
+       	    
+       	    </select></td>
+        </tr>
+		<tr>
+        <td colspan="2" align="center">Thursday</td>
+        <td colspan="2" align="center">Friday</td>
+        </tr>
+        <tr>
+           	<td><select  class="form-control" name="5Start" id="5Start">
+           	  {{ thursdayStart }}
+       	    </select></td>
+           	<td><select class="form-control"  name="5End" id="5End">
+           	  {{ thursdayEnd }}
+       	    </select></td>
+           	<td><select  class="form-control"  name="6Start" id="6Start">
+           	  {{  fridayStart }}
+       	    </select></td>
+           	<td><select  class="form-control"  name="6End" id="6End">
+           	  {{ fridayStart }}
+       	    </select></td>
+        </tr>
+        <tr>
+        <td colspan="4" align="center">Saturday</td>
+        </tr>
+        <tr>
+           	<td><select  class="form-control"  name="7Start" id="7Start">
+           	  {{ saturdayStart }}
+       	    </select></td>
+           	<td><select   class="form-control" name="7End" id="7End">
+           	  {{ saturdayEnd }}
+       	    </select></td>
+           	<td>&nbsp;</td>
+           	<td>&nbsp;</td>
+        </tr>
+      </table>
+      <br/>
+      <input type="submit" class="btn registerbutton" value="Register">
+      <label></label>
+      <label></label>
+     
+      
+<script>
+var timeOptionList = "<option value=-1>OFF</option>";
+var timeOptionEndList = "<option value=-1>OFF</option>";
+for (var time = 6; time <= 22; time++)
+{
+	var ampm = "AM";
+	if (time >= 12) ampm = "PM";
+	if (time==9)
+		timeOptionList += "<option value="+time+" selected>"+((time+11)%12+1)+":00 "+ampm+"</option>";
+	else
+		timeOptionList += "<option value="+time+">"+((time+11)%12+1)+":00 "+ampm+"</option>";
+	timeOptionList += "<option value="+time+".5>"+((time+11)%12+1)+":30 "+ampm+"</option>";
+	if (time==17)
+		timeOptionEndList += "<option value="+time+" selected>"+((time+11)%12+1)+":00 "+ampm+"</option>";
+	else
+		timeOptionEndList += "<option value="+time+">"+((time+11)%12+1)+":00 "+ampm+"</option>";
+	timeOptionEndList += "<option value="+time+".5>"+((time+11)%12+1)+":30 "+ampm+"</option>";
+}
+for (var dayofweek = 1; dayofweek <= 7; dayofweek++)
+{
+	var startTime = document.getElementById(dayofweek+"Start");
+	startTime.innerHTML = timeOptionList;
+	var endTime = document.getElementById(dayofweek+"End");
+	endTime.innerHTML = timeOptionEndList;
+}
+</script>
+         
+     
+	</form>
+    </center>
+       <div class="container" style="position:absolute; bottom:0% ;right:30% ;">
+
+
+            Copyright 2016 &reg; Conssol LLC.</div>
+    </nav>
+    </center>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="statics/js/bootstrap.min.js"></script>
+  </body>
+</html>

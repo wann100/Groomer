@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HeadWay Mobile App-Search</title>
+
+    <!-- Bootstrap -->
+    <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="statics/css/custom.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.9/css/bootstrap-slider.css" rel="stylesheet">
+           
+    <script>
+	
+	</script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+  	<center>
+      	 <nav class="navbar homenav">
+          <div class="container-fluid  col-xs-12  col-sm-12 col-lg-12" >
+              <a href="/MainPage"  class="btn bottomhomenav" style="  color:white; 
+               position:absolute;top:0px;left:0px; background:rgb(57,57,57)!important"rel="external" data->
+             <span class="glyphicon glyphicon-home"></span> Home</a>
+            <img class="img-responsive" src="statics/whole_logo.png"  style="width:60%; top:0px;left:0px;">
+            <a href="javascript:history.back(1)"  class="btn bottomhomenav" data-rel="back" style="color:white;
+             position:absolute;top:0px;right:0px; background:rgb(57,57,57)!important"rel="external" >
+                    	<span class="glyphicon  glyphicon-arrow-left"></span> Back</a>
+          	</div>
+      </nav> 
+		</center>
+        <nav class=" navbar bottomhomenav">
+        <center>
+          <div class="container-fluid  col-xs-12  col-sm-12 col-lg-12 bottomhomenav">
+              <div class="navbar-header bottomhomenav">
+                  <button type="button" class="navbar-toggle"  style="   position:absolute;left:0px;"data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"> </span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  
+ 				<center>
+                <h4  style="color:white"><span class="glyphicon glyphicon-search"></span> Search</h4>
+                </center>
+      
+              </div>
+              <div class="collapse navbar-collapse bottomhomenav "  id="myNavbar">
+              	<center>
+                  <ul class="nav navbar-nav ">
+                    <li class="active btn-xl" style="">
+                    	<a  style=""href="/search" rel="external" data-iconpos="center" data-icon="search">
+                    	<span class="glyphicon glyphicon-search"></span>Find A Hair Professional</a>
+                    </li>
+				</ul>
+                </center>    
+              </div>
+         
+      
+      
+	<br/>
+    <br/> <script>
+  var geo;
+  geo = -1
+  function getLocation(){
+    if (geo == -1){
+	    if(navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(showPosition);
+		}
+    }
+  }
+  function showPosition(position){
+    geo = position.coords
+  }
+  </script>
+
+    <form method="post"  action="/map" style="color:white;">
+      <div data-role="fieldcontain" data-type="horizontal">
+          <label for="location">Location:</label>
+          <input type="text" name="location" style="color:black;" id="location" value="{{ address }}"/>
+          <label for="geolocation">Use Browser GPS</label>
+          <input onclick="getLocation()" type="checkbox" name="geolocation" id="geolocation" class="custom" />
+        </div>
+      <div data-role="fieldcontain" data-type="horizontal">
+        
+          <label for="range">Range in Miles:</label>
+				<input id="range"  name="range"type="text" data-slider-min="0.0" data-slider-max="50" data-slider-step="5" data-slider-value="25.0" style="display: none;" data-value="14" value="25.0">
+
+          </div>
+      <div data-role="fieldcontain" style="background:transparent !important">
+        <label for="rating">Minimum Rating:</label>
+        <input  name="rating" id="rating"type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="3" style="display: none;" data-value="14" value="3.0"/>
+        </div>
+        <center>
+              <ul class="nav navbar-nav bottomhomenav ">
+                <li class="active">
+                
+                		<a   class="dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-search">
+                        </span> options</a>
+                  
+								  <ul class="dropdown-menu">
+                    <li class="active btn-xl" style="">
+                        <label for="searchbarbers">Barbers</label>
+                        
+          <input type="checkbox" name="searchbarbers" id="searchbarbers" class="custom" checked />
+              <label for="searchhairdressers">Hairdressers</label>
+          <input type="checkbox" name="searchhairdressers" id="searchhairdressers" class="custom" checked />
+                   	</li>
+                  </ul>
+                </li>
+              </ul>
+      </center>
+                             
+  
+
+        <button  class="btn registerbutton"onclick="searchBarbers();" type="button" for="textinput" id="locationButton">Search</button>
+      <div data-role="collapsible" id="collapsiblebarberlist" data-collapsed="true" style="background:transparent !important">
+  
+    <h4>List of Barbers</h4>
+    <div data-role="controlgroup">
+    <div id="barberlist">
+    </div>
+    </div></div>
+ 
+    <input type="submit"  class="btn  btn-lg registerbutton" value="View Map"  data-icon="gear" data-role="button"  data-iconpos="left"></form>
+			
+             </form>
+	<br/>
+     </div>
+    </center>
+  </nav>
+                 <center>
+              <footer class="footer">
+            <div class="container">
+            Copyright 2016 &reg; Conssol LLC. </div></footer>    </center>         
+
+<script>
+$(document).on("pageshow", "", function() {
+	$.validator.addMethod("validUsername", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = true;
+		var query = "action=usernameTaken&arg0="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="True";
+	}, 'This is not a valid username.');
+	$.validator.addMethod("rightPassword", function(value)
+	{
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=wrongPassword&arg0="+document.getElementById("username").value+"&arg1="+value;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		return req.responseText=="False";
+	}, 'The password you have entered is incorrect.');
+	$("#loginForm").validate();
+});
+function getCookie(cname)
+{
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i=0; i<ca.length; i++)
+  {
+  var c = ca[i].trim();
+  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+return "";
+}
+var newusername = getCookie('saveuser');
+$('#username').val(newusername);
+$('#password').val(getCookie('savepass'));
+if (newusername != '')
+{
+	document.getElementById("remember").checked = true;
+}
+//	var u = $.cookie("saveuser"); //"USERNAME" COOKIE
+//	var p = $.cookie("savepass"); //"PASSWORD" COOKIE
+//	alert('hello');
+//	alert(u);
+//	$("#username").val(u); //FILLS WITH "USERNAME" COOKIE
+//	$("#password").val(p); //FILLS WITH "PASSWORD" COOKIE
+</script>
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script>
+	$.ajaxSetup({ cache: false });
+	</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="statics/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.9/bootstrap-slider.js"></script>
+     <script>
+		$("#range").slider({});
+		$("#rating").slider({});
+
+				</script>
+   
+    <script>
+	getLocation();
+	function searchBarbers()
+	{	
+		var req = new XMLHttpRequest();
+		var async = false;
+		var query = "action=getListData";
+		
+		var myslider = $("range.slider").slider();
+		
+
+		if (document.getElementById("geolocation").checked)
+		{
+			query+="&arg0=["+geo.latitude+","+geo.longitude+"]";
+			var req2 = new XMLHttpRequest();
+			var query2 = "action=getStreetAddress&arg0="+geo.latitude+","+geo.longitude;
+			req2.open('GET','/database?' + query2,async);
+			req2.send();
+			document.getElementById("location").value = req2.responseText;
+		}
+		else
+		{
+			query+="&arg0="+document.getElementById("location").value;
+		}
+
+		query+="&arg1="+$('#range').data('slider').getValue();
+		query+="&arg2="+$('#rating').data('slider').getValue();
+		query+="&arg3="+document.getElementById("searchbarbers").checked;
+		query+="&arg4="+document.getElementById("searchhairdressers").checked;
+		req.open('GET', '/database?' + query, async);
+		req.send();
+		str = req.responseText;
+		document.getElementById('barberlist').innerHTML = str;
+	}
+	</script>
+   
+  </body>
+</html>
